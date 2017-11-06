@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+<body>
+<input id="myInput" type="text" value="Academy">
+<button onclick="checkBuilding()">Building</button>
+
+<img id="myImg" src= "images/happyquestion.jpg"  alt= "a picture of the token" style= "float:right;width:30%">
+<p id="statName"></p>
+<p id="statDescription"></p>
+<p id="statCost"></p>
+<p id= "statEconomy"></p>
+<p id= "statLoyalty"></p>
+<p id= "statStability"></p>
+<p id= "statDefense"></p>
+
+
+<script>
+function checkBuilding(buildingName) {
+  var text;
+  var description;
+    var buildings = document.getElementById("myInput").value;
+    function Building(name,bp, eco, loy, stab, def) {
+        this.buildingName= name;
+        this.buildingPoints= bp;
+        this.economy= eco;
+        this.loyalty = loy;
+        this.stability = stab;
+        this.defense = def
+        ;
+}
+var academy = new Building("Academy",52, 2, 2, 0, 0);
+var alchemist = new Building("Alchemist",18, 1, 0, 0 , 0);
+var arena = new Building("Arena",40, 0, 0, 4, 0);
+var bank = new Building("Bank", 28, 4, 0, 0, 0);
+var bardicCollege = new Building("Bardic College", 40, 1, 4, 1, 0);
+var barracks = new Building("Barracks",6, 0, 0, 0, 2);
+var unknown = new Building("unknown",0,0,0,0,0);
+  switch(buildings) {
+    case "Academy":
+      text =academy;
+     description = "An institution of higher learning.";
+      break;
+    case "Alchemist":
+      text =alchemist;
+      description = "The laboratory and home of a crafter of poisons, potions, or alchemical items.";
+      break;
+      case "Arena":
+      text =arena;
+      description = "A large public structure for competitions and team sports.";
+      break;
+      case "Bank":
+      text = bank;
+      description = "A secure building for storing valuables and granting loans.";
+      break;
+      case "Bardic College":
+        text = bardicCollege
+        description = "A center for artistic learning. Education in a Bardic College also includes research into a wide-range of historical topics."
+      break ;
+      case "Barracks":
+        text = barracks
+        description = "A building to house conscripts, guards, militia, soldiers, or similar military forces.";
+        break;
+
+    /* format to use for creating buildings
+    case "blank building":
+        text = blank
+        description = "descrition of blank"
+        break;
+*/
+    default: 
+      text = unknown;
+      description = "I have never heard of that building";
+      
+  }
+var pictureOutput = "images/" + text.buildingName + ".jpg"
+console.log(pictureOutput)
+document.getElementById("myImg").src = pictureOutput
+  document.getElementById("statName").innerHTML = "<p>" + text.buildingName + "</p>";
+  if (text !=  "I have never heard of that building."){
+  document.getElementById("statDescription").innerHTML = "<br>" + "<i>" + description + "</i>" + "<br>";
+} 
+  document.getElementById("statCost").innerHTML =  "<b>Cost: </b>" + text.buildingPoints + "<br>";
+if (text.economy > 0){ document.getElementById("statEconomy").innerHTML =  "<b>Economy: </b>" + text.economy + "<br>";
+ } else {document.getElementById("statEconomy").innerHTML = "";
+
+ }
+  if (text.loyalty > 0){document.getElementById("statLoyalty").innerHTML =  "<b>Loyalty: </b>" + text.loyalty + "<br>" ;
+ } else {document.getElementById("statLoyalty").innerHTML =  "";
+}   
+  if (text.stability > 0){document.getElementById("statStability").innerHTML = "<b>Stability: </b>" + text.stability+ "<br>";
+}else {document.getElementById("statStability").innerHTML = "";
+}
+ if (text.defense > 0){document.getElementById("statDefense").innerHTML = `<p><b>Defense: </b> ${text.defense} </p>`;
+ } else {document.getElementById("statDefense").innerHTML = "";
+
+}
+ 
+
+}
+</script>
+
+</body>
+</html>
